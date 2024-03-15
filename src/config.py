@@ -1,0 +1,1 @@
+SCREENSHOTS_PATH = "./.screenshots/" # Your desired path where you want to save screenshots
