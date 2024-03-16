@@ -6,5 +6,5 @@ def take_screenshot(page: Page, path: str, screenshot_id: int):
         screenshot_id+=1
         return screenshot_id
     except:
-        print("Error screenshotting")
+        print("Screenshot attempt failed ;(")
         return screenshot_id

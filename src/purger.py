@@ -1,5 +1,5 @@
 import sys
-from removal.handler import delete_handler;
+from removal.handler import removal_handler;
 
 def main():
     arguments = sys.argv
@@ -8,12 +8,14 @@ def main():
         subcommand = arguments.pop(0) 
         match subcommand:
             case "delete":
-                delete_handler(arguments);    
+                removal_handler(arguments)
+            case _:
+                purger_help()    
     else:
         purger_help()
 
 def purger_help():
-    print("Usage: delete u-url s-search_query e-youremail p-yourpassword")
+    print("Usage: delete u-\"url\" s-\"search query\" e-\"your email\" p-\"your password\"\nEmail and password are optional, you can also login using qr code")
 
 if __name__ == "__main__":
     main()
