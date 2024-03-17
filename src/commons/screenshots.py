@@ -8,3 +8,9 @@ def take_screenshot(page: Page, path: str, screenshot_id: int):
     except:
         print("Screenshot attempt failed ;(")
         return screenshot_id
+    
+def screenshot_custom(page: Page, path: str):
+    try:
+        page.screenshot(path=f"{path}")
+    except:
+        print("Screenshot attempt failed ;(")

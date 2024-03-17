@@ -4,7 +4,7 @@ from commons.screenshots import take_screenshot
 from config import SCREENSHOTS_PATH
 from removal.user_data import UserData
 
-def attempt_to_login(data: UserData, page: Page, screenshot_id):
+def attempt_to_login(data: UserData, page: Page, screenshot_id: int):
     if(data.email != None and data.password != None):
         standard_login(page, data.password, data.email)
     else:
