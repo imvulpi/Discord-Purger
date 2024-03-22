@@ -1,17 +1,18 @@
 from playwright.sync_api import Page
-from commons.constants import EMAIL_INPUT_QUERY, PASSWORD_INPUT_QUERY, QRCODE_QUERY, SUBMIT_LOGIN_QUERY
-from commons.screenshots import take_screenshot
+from commons.constants.messages import NO_STANDARD_LOGIN, PRESS_ANY_CONTINUE_QR_CODE
+from commons.constants.queries import EMAIL_INPUT_QUERY, PASSWORD_INPUT_QUERY, QRCODE_QUERY, SUBMIT_LOGIN_QUERY
+from commons.screenshots import screenshot_custom
 from config import SCREENSHOTS_PATH
 from removal.user_data import UserData
 
-def attempt_to_login(data: UserData, page: Page, screenshot_id: int):
+def attempt_to_login(data: UserData, page: Page):
     if(data.email != None and data.password != None):
         standard_login(page, data.password, data.email)
     else:
         page.wait_for_selector(QRCODE_QUERY)
-        screenshot_id = take_screenshot(page, SCREENSHOTS_PATH, screenshot_id)
-        print(f"No email and password input, you will need to scan the discord QR code. Please scan the QR in screenshot named: \"image{screenshot_id-1}.png\"")
-        input("Press any key to continue | Press only after scanning the QR code")
+        screenshot_custom(page, SCREENSHOTS_PATH+"qrcode.png")
+        print(NO_STANDARD_LOGIN)
+        input(PRESS_ANY_CONTINUE_QR_CODE)
 
 
 def standard_login(page: Page, password: str, email: str):
